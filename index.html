@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style/Style.css">
+
+    <title>Canvas Charts</title>
+</head>
+
+<body>
+    <form action="">
+        <fieldset>
+            <legend>Charts </legend>
+
+            <input class="inpt" type="text" name="inpt1" id="inpt1">
+            <input class="inpt" type="number" name="value1" id="value1">
+            <input class="inpt" type="color" name="color1" id="color1"><br><br>
+
+            <input class="inpt" type="text" name="inpt2" id="inpt2">
+            <input class="inpt" type="number" name="value2" id="value2">
+            <input class="inpt" type="color" name="color2" id="color2"><br><br>
+
+            <input class="inpt" type="text" name="inpt3" id="inpt3">
+            <input class="inpt" type="number" name="value3" id="value3">
+            <input class="inpt" type="color" name="color3" id="color3"><br><br>
+
+            <input class="inpt" type="text" name="inpt4" id="inpt4">
+            <input class="inpt" type="number" name="value4" id="value4">
+            <input class="inpt" type="color" name="color4" id="color4"><br><br>
+            <div class="chks">
+                <input class="chk" type="checkbox" id="chk1"><label for="chk1">Pie Chart</label>
+                <input class="chk" type="checkbox" id="chk2"><label for="chk2">Doughnut Chart</label><br><br>
+                <input class="chk" type="checkbox" id="chk3"><label for="chk3">Line Chart</label>
+                <input class="chk" type="checkbox" id="chk4"><label for="chk4">Bar Chart</label><br><br>
+            </div>
+            <input type="button" value="Draw" id="btn1">
+
+        </fieldset>
+    </form>
+    <div id="empty"></div>
+    <div class="content">
+        <canvas id="myCanvas" width="1000px" height="400px" style="border: 1px solid white; margin-top: 20px">
+        <div id="pieCanv"></div>
+        <div id="doughCanv"> </div>
+         </canvas>
+        <div id="chartContainer">
+            <div id="linechars"></div>
+            <div id="barCanv"></div>
+
+        </div>
+    </div>
+
+    <!-- **********************svg**************************** -->
+    <!-- **********************draw axis*************************** -->
+    /*
+    <div id="dataprecentage" style="display: flex; justify-content: center;">
+        <div id="1"></div> <span id="s1"></span>
+        <div id="2"></div> <span id="s2"></span>
+        <div id="3"></div> <span id="s3"></span>
+        <div id="4"></div> <span id="s4"></span>
+    </div>
+    <div id="svg1">
+        <h2>Line Char</h2>
+        <svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="graph" aria-labelledby="title" role="img" style="width: 800px; height: 430px; border: 1px solid rgb(50, 5, 109);">
+
+            <g class="grid x-grid" id="xGrid">
+                <line x1="90" x2="90" y1="5" y2="371"></line>
+            </g>
+            <g class="grid y-grid" id="yGrid">
+                <line x1="90" x2="705" y1="370" y2="370"></line>
+            </g>
+            <g class="labels x-labels">
+
+                <text x="200" y="400" id="text1"></text>
+                <text x="350" y="400" id="text2"></text>
+                <text x="500" y="400" id="text3"></text>
+                <text x="650" y="400" id="text4"></text>
+            </g>
+            <g class="labels y-labels">
+
+                <text x="80" y="15">100</text>
+                <text x="80" y="50.8">90</text>
+                <text x="80" y="86.6">80</text>
+                <text x="80" y="122.4">70</text>
+                <text x="80" y="158.2">60</text>
+                <text x="80" y="194">50</text>
+                <text x="80" y="229.8">40</text>
+                <text x="80" y="265.6">30</text>
+                <text x="80" y="301.4">20</text>
+                <text x="80" y="337.2">10</text>
+                <text x="80" y="373">0</text>
+
+                <text x="90" y="15">-</text>
+                <text x="90" y="50.8">-</text>
+                <text x="90" y="86.6">-</text>
+                <text x="90" y="122.4">-</text>
+                <text x="90" y="158.2">-</text>
+                <text x="90" y="194">-</text>
+                <text x="90" y="229.8">-</text>
+                <text x="90" y="265.6">-</text>
+                <text x="90" y="301.4">-</text>
+                <text x="90" y="337.2">-</text>
+                <text x="90" y="373">-</text>
+
+            </g>
+            <g class="data" data-setname="Our first data set">
+
+                <line x1="200" y1="0" x2="350" y2="0" stroke="black" stroke-width="2" id="line1"/>
+                <line x1="350" y1="0" x2="500" y2="0" stroke="black" stroke-width="2" id="line2"/>
+                <line x1="500" y1="0" x2="650" y2="0" stroke="black" stroke-width="2" id="line3"/>
+                
+                <circle cx="200" cy="370" r="4" id="circle1"></circle>
+                <circle cx="350" cy="370" r="4" id="circle2"></circle>
+                <circle cx="500" cy="370" r="4" id="circle3"></circle>
+                <circle cx="650" cy="370" r="4" id="circle4"></circle>
+
+            </g>
+        </svg>
+    </div>
+    <!-- ==============================end svg 1================================== -->
+    <!-- ==============================start svg 2================================-->
+    <!--  <div id="svg2">
+        <h2>Bar Char</h2>
+        <svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="graph" aria-labelledby="title" role="img" style="width: 800px; height: 430px; border: 1px solid rgb(50, 5, 109);">
+
+            <g class="grid x-grid" id="xGrid">
+                <line x1="90" x2="90" y1="5" y2="371"></line>
+            </g>
+            <g class="grid y-grid" id="yGrid">
+                <line x1="90" x2="705" y1="370" y2="370"></line>
+            </g>
+            <g class="labels x-labels">
+
+                <text x="200" y="400" id="text21"></text>
+                <text x="350" y="400" id="text22"></text>
+                <text x="500" y="400" id="text23"></text>
+                <text x="650" y="400" id="text24"></text>
+            </g>
+            <g class="labels y-labels">
+
+                <text x="80" y="15">100</text>
+                <text x="80" y="50.8">90</text>
+                <text x="80" y="86.6">80</text>
+                <text x="80" y="122.4">70</text>
+                <text x="80" y="158.2">60</text>
+                <text x="80" y="194">50</text>
+                <text x="80" y="229.8">40</text>
+                <text x="80" y="265.6">30</text>
+                <text x="80" y="301.4">20</text>
+                <text x="80" y="337.2">10</text>
+                <text x="80" y="373">0</text>
+
+                <text x="90" y="15">-</text>
+                <text x="90" y="50.8">-</text>
+                <text x="90" y="86.6">-</text>
+                <text x="90" y="122.4">-</text>
+                <text x="90" y="158.2">-</text>
+                <text x="90" y="194">-</text>
+                <text x="90" y="229.8">-</text>
+                <text x="90" y="265.6">-</text>
+                <text x="90" y="301.4">-</text>
+                <text x="90" y="337.2">-</text>
+                <text x="90" y="373">-</text>
+
+            </g>-->
+    <!-- <g class="data" data-setname="Our first data set"> -->
+    <!-- height = 370 - y (370-140=266) -->
+    <!--   <rect x="640"  width="50" y="0" height="0"  id="rec4"/>
+                <rect x="490"  width="50" y="0" height="0"  id="rec3"/>
+                <rect x="340"  width="50" y="0" height="0"  id="rec2"/>
+                <rect x="190"  width="50" y="0" height="0"  id="rec1"/>
+
+            </g>
+        </svg>
+    </div>
+-->
+
+    <!-- <canvas id="myCanvas" width="100%"></canvas> -->
+    <script src="Script/Script.js"></script>
+</body>
+
+</html>
